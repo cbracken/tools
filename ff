@@ -1,0 +1,20 @@
+#!/bin/bash
+# Find files by filename substring under current/specified directories
+
+RCFILE=".ffrc"
+
+if [[ "$#" -lt 1 ]]; then
+  echo "Missing required search term"
+  exit 1
+elif [[ "$#" -eq 1 ]]; then
+  FFROOTS=.
+  if [[ -f "$RCFILE" ]]; then
+    . "./$RCFILE"
+  fi
+  SEARCHSTR=$1
+else
+  FFROOTS="${@:1:$(($#-1))}"
+  SEARCHSTR=${!#}
+fi
+
+find $FFROOTS -type f -name "*$SEARCHSTR*"
