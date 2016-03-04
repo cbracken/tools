@@ -8,16 +8,18 @@ export GOPATH=$PWD
 
 # Build tools
 echo "Building go tools..."
-echo "  goimports"
-go get -u golang.org/x/tools/cmd/goimports
+echo "  errcheck"
+go get -u github.com/kisielk/errcheck
 echo "  gocode"
 go get -u github.com/nsf/gocode
 echo "  godef"
 go get -u github.com/rogpeppe/godef
+echo "  goimports"
+go get -u golang.org/x/tools/cmd/goimports
 echo "  golint"
 go get -u github.com/golang/lint/golint
-echo "  errcheck"
-go get -u github.com/kisielk/errcheck
+echo "  gotags"
+go get -u github.com/jstemmer/gotags
 echo "  oracle"
 go get -u golang.org/x/tools/cmd/oracle
 
