@@ -1,0 +1,13 @@
+#!/bin/bash
+# Fetches a github pull request into a branch named pull-PRNUM
+
+if [[ $# != 2 ]]; then
+  echo "usage git fetchpull REMOTE PR_NUM"
+  exit 1
+fi
+
+REMOTE=$1
+PR_NUM=$2
+shift 2
+
+git fetch $REMOTE pull/$PR_NUM/head:pull-$PR_NUM
