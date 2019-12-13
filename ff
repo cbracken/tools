@@ -1,7 +1,6 @@
 #!/bin/sh
 # Find files by filename substring under current/specified directories
 
-RCFILE=".ffrc"
 USAGE="usage: ff [DIR] SEARCHSTR"
 
 if [ "$#" -lt 1 ]; then
@@ -10,9 +9,6 @@ if [ "$#" -lt 1 ]; then
   exit 1
 elif [ "$#" -eq 1 ]; then
   FFROOTS=.
-  if [ -f "$RCFILE" ]; then
-    . "./$RCFILE"
-  fi
   SEARCHSTR=$1
 else
   while [ "$2" != "" ]; do
