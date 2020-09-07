@@ -3,7 +3,8 @@
 set -e
 
 SRC="$HOME/src/flutter/engine/src"
-FILES="$SRC/flutter/cscope.files"
+FILES="$HOME/src/cscope/cscope-flutter.files"
+mkdir -p `dirname $FILES`
 
 find \
   "$SRC/flutter" \
@@ -24,8 +25,5 @@ find \
   -type f \
   >> "$FILES"
 
-PWD_OLD="$PWD"
-cd "$SRC/flutter"
-rm -f cscope.out
-cscope -bqk
-cd "$PWD_OLD"
+# In $HOME/src/flutter/engine/src, create a symbolic link named cscope.files to
+# the output file $FILES, then run cscope -bqk.

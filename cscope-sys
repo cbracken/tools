@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+SRC="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys"
+FILES="$HOME/src/cscope/cscope-sys.files"
+mkdir -p `dirname $FILES`
+
+find \
+  "$SRC" \
+  -type f \
+  \( -name "*.[cmhsS]" -o \
+     -name "*.cc" -o \
+     -name "*.cpp" -o \
+     -name "*.mm" -o \
+     -name "*.java" \) \
+     -print \
+  > "$FILES"
+
+# In the project directory, create a symbolic link named cscope.files to the
+# output file $FILES, then run cscope -bqk.
