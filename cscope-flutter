@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+SRC="$HOME/src/flutter/engine/src"
+FILES="$SRC/flutter/cscope.files"
+
+find \
+  "$SRC/flutter" \
+  "$SRC/third_party/dart/runtime" \
+  "$SRC/third_party/skia/include" \
+  -type f \
+  \( -name "*.[cmhsS]" -o \
+     -name "*.cc" -o \
+     -name "*.cpp" -o \
+     -name "*.mm" -o \
+     -name "*.java" \) \
+     -print \
+  > "$FILES"
+
+find \
+  "$SRC/third_party/libcxx/include" \
+  ! -name "__*" \
+  -type f \
+  >> "$FILES"
+
+PWD_OLD="$PWD"
+cd "$SRC/flutter"
+rm -f cscope.out
+cscope -bqk
+cd "$PWD_OLD"
